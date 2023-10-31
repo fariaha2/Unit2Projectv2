@@ -23,17 +23,17 @@ public class LinearEquationLogic {
            x2 = Integer.parseInt(coord2.substring(1,2));
            y2 = Integer.parseInt(coord2.substring(4,5));
         } else if(coord2.length()==8) {
-            x2 = Integer.parseInt(coord2.substring(1,3));
+            x2 = Integer.parseInt(coord2.substring(2,3));
             temp = 2*x2;
             x2 = x2-temp;
-            y2 = Integer.parseInt(coord2.substring(6,8));
+            y2 = Integer.parseInt(coord2.substring(6,7));
             temp = 2*y2;
             y2 = y2-temp;
         } else {
             System.out.println("In " + coord2 + ", is the x-value negative or is the y-value? x/y");
             String ans1 = myScanner.nextLine();
-            if(ans1=="x") {
-                x2 = Integer.parseInt(coord2.substring(1,2));
+            if(ans1.equals("x")) {
+                x2 = Integer.parseInt(coord2.substring(2,3));
                 temp = 2*x2;
                 x2 = x2-temp;
                 y2 = Integer.parseInt(coord2.substring(5,6));
@@ -48,19 +48,19 @@ public class LinearEquationLogic {
             x1 = Integer.parseInt(coord1.substring(1,2));
             y1 = Integer.parseInt(coord1.substring(4,5));
         } else if(coord1.length()==8) {
-            x1 = Integer.parseInt(coord1.substring(1,3));
+            x1 = Integer.parseInt(coord1.substring(2,3));
             temp = 2*x1;
             x1 = x1-temp;
-            y1 = Integer.parseInt(coord1.substring(6,8));
+            y1 = Integer.parseInt(coord1.substring(6,7));
             temp = 2*y1;
             y1 = y1-temp;
         } else {
             System.out.println("In " + coord1 + ", is the x-value negative or is the y-value? x/y");
             String ans1 = myScanner.nextLine();
             System.out.println(ans1);
-            if(ans1=="x") {
-                x1 = Integer.parseInt(coord1.substring(1,2));
-                temp = 2*x2;
+            if(ans1.equals("x")) {
+                x1 = Integer.parseInt(coord1.substring(2,3));
+                temp = 2*x1;
                 x1 = x1-temp;
                 y1 = Integer.parseInt(coord1.substring(5,6));
             } else {
