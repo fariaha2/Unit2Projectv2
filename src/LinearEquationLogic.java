@@ -19,57 +19,14 @@ public class LinearEquationLogic {
         String coord1 = myScanner.nextLine();
         System.out.println("Enter coordinate 2: ");
         String coord2 = myScanner.nextLine();
-        if(coord2.length()==6) {
-           x2 = Integer.parseInt(coord2.substring(1,2));
-           y2 = Integer.parseInt(coord2.substring(4,5));
-        } else if(coord2.length()==8) {
-            x2 = Integer.parseInt(coord2.substring(2,3));
-            temp = 2*x2;
-            x2 = x2-temp;
-            y2 = Integer.parseInt(coord2.substring(6,7));
-            temp = 2*y2;
-            y2 = y2-temp;
-        } else {
-            System.out.println("In " + coord2 + ", is the x-value negative or is the y-value? x/y");
-            String ans1 = myScanner.nextLine();
-            if(ans1.equals("x")) {
-                x2 = Integer.parseInt(coord2.substring(2,3));
-                temp = 2*x2;
-                x2 = x2-temp;
-                y2 = Integer.parseInt(coord2.substring(5,6));
-            } else {
-                x2 = Integer.parseInt(coord2.substring(1,2));
-                y2 = Integer.parseInt(coord2.substring(5,6));
-                temp = 2*y2;
-                y2 = y2-temp;
-            }
-        }
-        if(coord1.length()==6) {
-            x1 = Integer.parseInt(coord1.substring(1,2));
-            y1 = Integer.parseInt(coord1.substring(4,5));
-        } else if(coord1.length()==8) {
-            x1 = Integer.parseInt(coord1.substring(2,3));
-            temp = 2*x1;
-            x1 = x1-temp;
-            y1 = Integer.parseInt(coord1.substring(6,7));
-            temp = 2*y1;
-            y1 = y1-temp;
-        } else {
-            System.out.println("In " + coord1 + ", is the x-value negative or is the y-value? x/y");
-            String ans1 = myScanner.nextLine();
-            System.out.println(ans1);
-            if(ans1.equals("x")) {
-                x1 = Integer.parseInt(coord1.substring(2,3));
-                temp = 2*x1;
-                x1 = x1-temp;
-                y1 = Integer.parseInt(coord1.substring(5,6));
-            } else {
-                x1 = Integer.parseInt(coord1.substring(1,2));
-                y1 = Integer.parseInt(coord1.substring(5,6));
-                temp = 2*y1;
-                y1 = y1-temp;
-            }
-        }
+        int comma1 = coord1.indexOf(",");
+        int comma2 = coord2.indexOf(",");
+        int length1 = coord1.length();
+        int length2 = coord2.length();
+        x1 = Integer.parseInt(coord1.substring(1, comma1));
+        x2 = Integer.parseInt(coord2.substring(1, comma2));
+        y1 = Integer.parseInt(coord1.substring(comma1+2, length1-1));
+        y2 = Integer.parseInt(coord2.substring(comma2+2, length2-1));
         LinearEquation line = new LinearEquation(x1, y1, x2, y2);
         System.out.println(line.lineInfo());
         System.out.println("Enter an x-value");
@@ -83,6 +40,8 @@ public class LinearEquationLogic {
         String ans = myScanner.nextLine();
         if(ans.equals("y")) {
             getCoords();
+        } else if(ans.equals("n")) {
+            System.out.println("Goodbye!");
         }
     }
 }

@@ -29,40 +29,64 @@ public class LinearEquation {
         return roundedtoHundredth(yInt);
     }
     public String equation() {
-        if(x2==x1) {
-            return "x = " + x2;
-        }
         int y = y2-y1;
         int x = x2-x1;
-        if(y<0 && x<0) {
+        if(y == 0 || x == 0) {
+            return "y = " + yIntercept();
+        }
+        if(x2==x1) {
+            return "y = " + x2 + "x";
+        }
+        if(((double) y/x) == 1) {
+            if(yIntercept()<0) {
+                return "y = x - " + Math.abs(yIntercept());
+            } else if(yIntercept()==0) {
+                return "y = x";
+            }
+            return "y = x + " + yIntercept();
+        } else if((double) y/x == -1) {
+            if(yIntercept()<0) {
+                return "y = -x - " + Math.abs(yIntercept());
+            } else if(yIntercept()==0) {
+                return "y = -x";
+            }
+            return "y = -x + " + yIntercept();
+        } else if(y % x == 0) {
+            if (yIntercept() < 0) {
+                return "y = " + y / x + "x - " + Math.abs(yIntercept());
+            }
+            if (yIntercept() == 0) {
+                return "y = " + y / x + "x";
+            }
+            return "y = " + y / x + "x + " + yIntercept();
+        } else if(y<0 && x<0) {
             y = Math.abs(y);
             x = Math.abs(x);
-        }
-        if(y>0 && x<0) {
-            x = Math.abs(x);
-        }
-        if(yIntercept()<0) {
-            if(y % x == 0) {
-                return "y = " + y/x + "x - " + Math.abs(yIntercept());
+            if(yIntercept()<0) {
+                return "y = " + y + "/" + x + "x -" + Math.abs(yIntercept());
+            } else if(yIntercept()==0) {
+                return "y = " + y + "/" + x + "x";
             }
-            return "y = " + y + "/" + x + "x - " + Math.abs(yIntercept());
+            return "y = " + y + "/" + x + "x +" + yIntercept();
+        } else if(x<0) {
+            if(yIntercept()<0) {
+                return "y = -" + y + "/" + Math.abs(x) + "x -" + Math.abs(yIntercept());
+            } else if(yIntercept()==0) {
+                return "y = -" + y + "/" + Math.abs(x) + "x";
+            }
+            return "y = -" + y + "/" + Math.abs(x) + "x +" + yIntercept();
         }
         if(yIntercept()==0) {
-            if(y % x == 0) {
-                return "y = " + y/x + "x";
-            }
-        }
-        if(y % x == 0) {
-            return "y = " + y/x + "x + " + yIntercept();
-        }
-        if(y/x == 1) {
-            return "y = x + " + yIntercept();
-        } else if(y/x == -1) {
-            return "y = -x + " + yIntercept();
+            return "y = " + y + "/" + x + "x";
+        } else if(yIntercept()<0) {
+            return "y = " + y + "/" + x + "x -" + Math.abs(yIntercept());
         }
         return "y = " + y + "/" + x + "x + " + yIntercept();
     }
     public String coordinateForX(double x) {
+        if(x2==x1) {
+            return "There is an infinite number of outputs since this is a vertical line";
+        }
         double m = x*slope();
         double yCoord = m+yIntercept();
         return "(" + x + ", " + yCoord + ")";
